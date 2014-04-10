@@ -1,8 +1,8 @@
 package com.asmierciak.cryptography.cryptosystems;
 
 public class RsaKeyGenerator implements KeyGenerator {
-    private Key publicKey;
-    private Key privateKey;
+    private RsaPublicKey publicKey;
+    private RsaPrivateKey privateKey;
 
     @Override
     public void generateKeys() {
@@ -10,12 +10,12 @@ public class RsaKeyGenerator implements KeyGenerator {
     }
 
     @Override
-    public Key getPublicKey() {
+    public RsaPublicKey getPublicKey() {
         return publicKey;
     }
 
     @Override
-    public Key getPrivateKey() {
+    public RsaPrivateKey getPrivateKey() {
         return privateKey;
     }
 }

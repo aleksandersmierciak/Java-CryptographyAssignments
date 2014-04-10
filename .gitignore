@@ -1,0 +1,14 @@
+# IntelliJ IDEA project files
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/libraries/*.xml
+
+# Gradle
+.gradle/
+build/
+
+# Gradle wrapper
+gradle
+gradlew
+gradlew.bat

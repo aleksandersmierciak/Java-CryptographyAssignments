@@ -1,13 +1,16 @@
 package com.asmierciak.cryptography.cryptosystems;
 
-public class RsaDecryptor implements Decryptor {
-    @Override
-    public void setKey(Key key) {
+import java.math.BigInteger;
 
+public class RsaDecryptor implements Decryptor {
+    private RsaPrivateKey key;
+
+    public RsaDecryptor(RsaPrivateKey key) {
+        this.key = key;
     }
 
     @Override
-    public String decrypt(String ciphertext) {
-        return null;
+    public BigInteger decrypt(BigInteger ciphertext) {
+        return ciphertext.modPow(key.getPrivateExponent(), key.getModulus());
     }
 }

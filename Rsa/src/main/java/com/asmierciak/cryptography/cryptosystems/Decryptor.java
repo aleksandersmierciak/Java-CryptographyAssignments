@@ -1,7 +1,7 @@
 package com.asmierciak.cryptography.cryptosystems;
 
-public interface Decryptor {
-    void setKey(Key key);
+import java.math.BigInteger;
 
-    String decrypt(String ciphertext);
+public interface Decryptor {
+    BigInteger decrypt(BigInteger ciphertext);
 }

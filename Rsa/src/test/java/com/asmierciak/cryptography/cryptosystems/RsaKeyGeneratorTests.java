@@ -1,9 +1,5 @@
 package com.asmierciak.cryptography.cryptosystems;
 
-import com.asmierciak.cryptography.cryptosystems.RsaKeyGenerator;
-import com.asmierciak.cryptography.cryptosystems.RsaPrivateKey;
-import com.asmierciak.cryptography.cryptosystems.RsaPublicKey;
-import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -11,6 +7,9 @@ import org.junit.runners.Parameterized;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
 public class RsaKeyGeneratorTests {
@@ -21,24 +20,38 @@ public class RsaKeyGeneratorTests {
     /**
      * Represents the result of multiplying p and q (symbol: n).
      */
-    private final BigInteger modulus;
+    private final BigInteger expectedModulus;
 
     /**
      * Represents the public exponent (symbol: e).
      */
-    private final BigInteger publicExponent;
+    private final BigInteger expectedPublicExponent;
 
     /**
      * Represents the private exponent (symbol: d).
      */
-    private final BigInteger privateExponent;
+    private final BigInteger expectedPrivateExponent;
 
-    public RsaKeyGeneratorTests(BigInteger p, BigInteger q, BigInteger modulus, BigInteger publicExponent, BigInteger privateExponent) {
+    private final RsaKeyGenerator generator;
+
+    private final RsaPublicKey publicKey;
+
+    private final RsaPrivateKey privateKey;
+
+    public RsaKeyGeneratorTests(BigInteger p, BigInteger q,
+                                BigInteger expectedModulus,
+                                BigInteger expectedPublicExponent, BigInteger expectedPrivateExponent) {
         this.p = p;
         this.q = q;
-        this.modulus = modulus;
-        this.publicExponent = publicExponent;
-        this.privateExponent = privateExponent;
+        this.expectedModulus = expectedModulus;
+        this.expectedPublicExponent = expectedPublicExponent;
+        this.expectedPrivateExponent = expectedPrivateExponent;
+
+        generator = new RsaKeyGenerator(p, q);
+        generator.generateKeys();
+
+        publicKey = generator.getPublicKey();
+        privateKey = generator.getPrivateKey();
     }
 
     @Parameterized.Parameters
@@ -46,24 +59,79 @@ public class RsaKeyGeneratorTests {
         Object[][] data = new Object[][]
                 { {
                     BigInteger.valueOf(61), BigInteger.valueOf(53),
-                    BigInteger.valueOf(3233), BigInteger.valueOf(17), BigInteger.valueOf(2753)
+                    BigInteger.valueOf(3233), BigInteger.valueOf(7), BigInteger.valueOf(1783)
                 } };
         return Arrays.asList(data);
 
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIfPNegative() throws Exception {
+        new RsaKeyGenerator(BigInteger.valueOf(-1), BigInteger.TEN);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIfPNotGreaterThanOne() throws Exception {
+        new RsaKeyGenerator(BigInteger.ONE, BigInteger.TEN);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIfQNegative() throws Exception {
+        new RsaKeyGenerator(BigInteger.TEN, BigInteger.valueOf(-1));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIfQNotGreaterThanOne() throws Exception {
+        new RsaKeyGenerator(BigInteger.TEN, BigInteger.ONE);
+    }
+
     @Test
-    public void keyTest() {
-        RsaKeyGenerator generator = new RsaKeyGenerator(p, q);
+    public void testPublicKeyIsNotNull() throws Exception {
+        assertThat(publicKey, is(notNullValue()));
+    }
 
-        generator.generateKeys();
+    @Test
+    public void testPublicKeyModulusIsNotNull() throws Exception {
+        assertThat(publicKey.getModulus(), is(equalTo(expectedModulus)));
+    }
 
-        RsaPublicKey publicKey = generator.getPublicKey();
-        Assert.assertEquals(modulus, publicKey.getModulus());
-        Assert.assertEquals(publicExponent, publicKey.getPublicExponent());
+    @Test
+    public void testPublicKeyModulusIsValid() throws Exception {
+        assertThat(publicKey.getModulus(), is(equalTo(expectedModulus)));
+    }
 
-        RsaPrivateKey privateKey = generator.getPrivateKey();
-        Assert.assertEquals(modulus, privateKey.getModulus());
-        Assert.assertEquals(privateExponent, privateKey.getPrivateExponent());
+    @Test
+    public void testPublicKeyExponentIsNotNull() throws Exception {
+        assertThat(publicKey.getPublicExponent(), is(notNullValue()));
+    }
+
+    @Test
+    public void testPublicKeyExponentIsValid() throws Exception {
+        assertThat(publicKey.getPublicExponent(), is(equalTo(expectedPublicExponent)));
+    }
+
+    @Test
+    public void testPrivateKeyIsNotNull() throws Exception {
+        assertThat(privateKey, is(notNullValue()));
+    }
+
+    @Test
+    public void testPrivateKeyModulusIsNotNull() throws Exception {
+        assertThat(privateKey.getModulus(), is(notNullValue()));
+    }
+
+    @Test
+    public void testPrivateKeyModulusIsValid() throws Exception {
+        assertThat(privateKey.getModulus(), is(equalTo(expectedModulus)));
+    }
+
+    @Test
+    public void testPrivateKeyExponentIsNotNull() throws Exception {
+        assertThat(privateKey.getPrivateExponent(), is(notNullValue()));
+    }
+
+    @Test
+    public void testPrivateKeyExponentIsValid() throws Exception {
+        assertThat(privateKey.getPrivateExponent(), is(equalTo(expectedPrivateExponent)));
     }
 }

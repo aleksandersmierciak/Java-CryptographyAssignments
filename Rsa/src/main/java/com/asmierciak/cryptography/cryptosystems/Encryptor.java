@@ -1,7 +1,7 @@
 package com.asmierciak.cryptography.cryptosystems;
 
-public interface Encryptor {
-    void setKey(Key key);
+import java.math.BigInteger;
 
-    String encrypt(String plaintext);
+public interface Encryptor {
+    BigInteger encrypt(BigInteger plaintext);
 }

@@ -13,28 +13,24 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
 public class RsaDecryptorTests {
-    private final BigInteger input;
-
     private final BigInteger expectedOutput;
-
-    private final RsaDecryptor decryptor;
 
     private final BigInteger actualOutput;
 
     public RsaDecryptorTests(BigInteger input, BigInteger expectedOutput) {
-        this.input = input;
         this.expectedOutput = expectedOutput;
 
         RsaPrivateKey key = new RsaPrivateKey(BigInteger.valueOf(3233), BigInteger.valueOf(1783));
-        decryptor = new RsaDecryptor(key);
+        RsaDecryptor decryptor = new RsaDecryptor(key);
         actualOutput = decryptor.decrypt(input);
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][] {
-                {BigInteger.valueOf(65), BigInteger.valueOf(2093)},
-                {BigInteger.valueOf(16705), BigInteger.valueOf(1955)}
+                {BigInteger.valueOf('\n'), BigInteger.valueOf(1372)},
+                {BigInteger.valueOf('A'), BigInteger.valueOf(2093)},
+                {BigInteger.valueOf('a'), BigInteger.valueOf(187)}
         };
         return Arrays.asList(data);
     }
@@ -47,5 +43,19 @@ public class RsaDecryptorTests {
     @Test
     public void testOutputIsValid() throws Exception {
         assertThat(actualOutput, is(equalTo(expectedOutput)));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIfInputIsGreaterThanModulus() {
+        RsaPrivateKey key = new RsaPrivateKey(BigInteger.ONE, BigInteger.ONE);
+        RsaDecryptor decryptor = new RsaDecryptor(key);
+        decryptor.decrypt(BigInteger.TEN);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIfInputIsEqualToModulus() {
+        RsaPrivateKey key = new RsaPrivateKey(BigInteger.ONE, BigInteger.ONE);
+        RsaDecryptor decryptor = new RsaDecryptor(key);
+        decryptor.decrypt(BigInteger.ONE);
     }
 }

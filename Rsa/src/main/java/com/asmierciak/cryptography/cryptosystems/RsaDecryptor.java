@@ -11,6 +11,10 @@ public class RsaDecryptor implements Decryptor {
 
     @Override
     public BigInteger decrypt(BigInteger ciphertext) {
+        if (ciphertext.compareTo(key.getModulus()) >= 0) {
+            throw new IllegalArgumentException("Input must be less than the key modulus");
+        }
+
         return ciphertext.modPow(key.getPrivateExponent(), key.getModulus());
     }
 }

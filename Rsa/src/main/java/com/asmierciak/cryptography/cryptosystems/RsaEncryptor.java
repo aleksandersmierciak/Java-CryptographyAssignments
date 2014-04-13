@@ -11,6 +11,10 @@ public class RsaEncryptor implements Encryptor {
 
     @Override
     public BigInteger encrypt(BigInteger plaintext) {
+        if (plaintext.compareTo(key.getModulus()) >= 0) {
+            throw new IllegalArgumentException("Input must be less than the key modulus");
+        }
+
         return plaintext.modPow(key.getPublicExponent(), key.getModulus());
     }
 }

@@ -66,22 +66,22 @@ public class RsaKeyGeneratorTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testThrowsIfPNegative() throws Exception {
+    public void testThrowsIfPIsNegative() throws Exception {
         new RsaKeyGenerator(BigInteger.valueOf(-1), BigInteger.TEN);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testThrowsIfPNotGreaterThanOne() throws Exception {
+    public void testThrowsIfPIsNotGreaterThanOne() throws Exception {
         new RsaKeyGenerator(BigInteger.ONE, BigInteger.TEN);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testThrowsIfQNegative() throws Exception {
+    public void testThrowsIfQIsNegative() throws Exception {
         new RsaKeyGenerator(BigInteger.TEN, BigInteger.valueOf(-1));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testThrowsIfQNotGreaterThanOne() throws Exception {
+    public void testThrowsIfQIsNotGreaterThanOne() throws Exception {
         new RsaKeyGenerator(BigInteger.TEN, BigInteger.ONE);
     }
 

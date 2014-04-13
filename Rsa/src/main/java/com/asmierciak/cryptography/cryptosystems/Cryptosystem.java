@@ -1,6 +1,8 @@
 package com.asmierciak.cryptography.cryptosystems;
 
+import java.math.BigInteger;
+
 public interface Cryptosystem {
-    String encrypt(String plaintext);
-    String decrypt(String ciphertext);
+    BigInteger[] encrypt(String plaintext);
+    String decrypt(BigInteger[] ciphertext);
 }

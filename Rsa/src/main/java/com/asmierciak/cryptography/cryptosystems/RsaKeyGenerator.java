@@ -23,21 +23,29 @@ public class RsaKeyGenerator implements KeyGenerator {
     @Override
     public void generateKeys() {
         BigInteger n = p.multiply(q);
-        BigInteger phi = (p.subtract(BigInteger.ONE)).multiply((q.subtract(BigInteger.ONE)));
+        BigInteger phi = eulerTotient(p, q);
 
-        BigInteger e = BigInteger.valueOf(2);
-        for (BigInteger i = e; i.compareTo(phi) < 0; i = i.add(BigInteger.ONE)) {
-            BigInteger gcd = phi.gcd(i);
-            if (gcd.equals(BigInteger.ONE)) {
-                e = i;
-                break;
-            }
-        }
-
+        BigInteger e = firstCoprimeOf(phi);
         BigInteger d = e.modInverse(phi);
 
         this.publicKey = new RsaPublicKey(n, e);
         this.privateKey = new RsaPrivateKey(n, d);
+    }
+
+    private BigInteger eulerTotient(BigInteger p, BigInteger q) {
+        return (p.subtract(BigInteger.ONE)).multiply((q.subtract(BigInteger.ONE)));
+    }
+
+    private static BigInteger firstCoprimeOf(BigInteger value) {
+        BigInteger coprime = BigInteger.valueOf(2);
+        for (BigInteger i = coprime; i.compareTo(value) < 0; i = i.add(BigInteger.ONE)) {
+            BigInteger gcd = value.gcd(i);
+            if (gcd.equals(BigInteger.ONE)) {
+                coprime = i;
+                break;
+            }
+        }
+        return coprime;
     }
 
     @Override

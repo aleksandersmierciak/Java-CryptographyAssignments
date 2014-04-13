@@ -1,8 +1,5 @@
-package com.asmierciak.cryptography.cryptosystems.rsa;
+package com.asmierciak.cryptography.keys.rsa;
 
-import com.asmierciak.cryptography.keys.rsa.RsaKeyGenerator;
-import com.asmierciak.cryptography.keys.rsa.RsaPrivateKey;
-import com.asmierciak.cryptography.keys.rsa.RsaPublicKey;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;

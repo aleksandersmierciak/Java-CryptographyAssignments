@@ -1,4 +1,6 @@
-package com.asmierciak.cryptography.cryptosystems;
+package com.asmierciak.cryptography.keys.rsa;
+
+import com.asmierciak.cryptography.keys.KeyGenerator;
 
 import java.math.BigInteger;
 

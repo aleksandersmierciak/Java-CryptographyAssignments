@@ -1,4 +1,6 @@
-package com.asmierciak.cryptography.cryptosystems;
+package com.asmierciak.cryptography.util.ascii;
+
+import com.asmierciak.cryptography.util.TextDecoder;
 
 import java.math.BigInteger;
 

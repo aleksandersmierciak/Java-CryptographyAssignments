@@ -1,5 +1,10 @@
-package com.asmierciak.cryptography.cryptosystems;
+package com.asmierciak.cryptography.cryptosystems.rsa;
 
+import com.asmierciak.cryptography.keys.rsa.RsaKeyGenerator;
+import com.asmierciak.cryptography.keys.rsa.RsaPrivateKey;
+import com.asmierciak.cryptography.keys.rsa.RsaPublicKey;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -7,9 +12,6 @@ import org.junit.runners.Parameterized;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
 public class RsaKeyGeneratorTests {
@@ -87,51 +89,51 @@ public class RsaKeyGeneratorTests {
 
     @Test
     public void testPublicKeyIsNotNull() throws Exception {
-        assertThat(publicKey, is(notNullValue()));
+        Assert.assertThat(publicKey, CoreMatchers.is(CoreMatchers.notNullValue()));
     }
 
     @Test
     public void testPublicKeyModulusIsNotNull() throws Exception {
-        assertThat(publicKey.getModulus(), is(equalTo(expectedModulus)));
+        Assert.assertThat(publicKey.getModulus(), CoreMatchers.is(CoreMatchers.equalTo(expectedModulus)));
     }
 
     @Test
     public void testPublicKeyModulusIsValid() throws Exception {
-        assertThat(publicKey.getModulus(), is(equalTo(expectedModulus)));
+        Assert.assertThat(publicKey.getModulus(), CoreMatchers.is(CoreMatchers.equalTo(expectedModulus)));
     }
 
     @Test
     public void testPublicKeyExponentIsNotNull() throws Exception {
-        assertThat(publicKey.getPublicExponent(), is(notNullValue()));
+        Assert.assertThat(publicKey.getPublicExponent(), CoreMatchers.is(CoreMatchers.notNullValue()));
     }
 
     @Test
     public void testPublicKeyExponentIsValid() throws Exception {
-        assertThat(publicKey.getPublicExponent(), is(equalTo(expectedPublicExponent)));
+        Assert.assertThat(publicKey.getPublicExponent(), CoreMatchers.is(CoreMatchers.equalTo(expectedPublicExponent)));
     }
 
     @Test
     public void testPrivateKeyIsNotNull() throws Exception {
-        assertThat(privateKey, is(notNullValue()));
+        Assert.assertThat(privateKey, CoreMatchers.is(CoreMatchers.notNullValue()));
     }
 
     @Test
     public void testPrivateKeyModulusIsNotNull() throws Exception {
-        assertThat(privateKey.getModulus(), is(notNullValue()));
+        Assert.assertThat(privateKey.getModulus(), CoreMatchers.is(CoreMatchers.notNullValue()));
     }
 
     @Test
     public void testPrivateKeyModulusIsValid() throws Exception {
-        assertThat(privateKey.getModulus(), is(equalTo(expectedModulus)));
+        Assert.assertThat(privateKey.getModulus(), CoreMatchers.is(CoreMatchers.equalTo(expectedModulus)));
     }
 
     @Test
     public void testPrivateKeyExponentIsNotNull() throws Exception {
-        assertThat(privateKey.getPrivateExponent(), is(notNullValue()));
+        Assert.assertThat(privateKey.getPrivateExponent(), CoreMatchers.is(CoreMatchers.notNullValue()));
     }
 
     @Test
     public void testPrivateKeyExponentIsValid() throws Exception {
-        assertThat(privateKey.getPrivateExponent(), is(equalTo(expectedPrivateExponent)));
+        Assert.assertThat(privateKey.getPrivateExponent(), CoreMatchers.is(CoreMatchers.equalTo(expectedPrivateExponent)));
     }
 }

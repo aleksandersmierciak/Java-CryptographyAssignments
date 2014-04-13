@@ -1,4 +1,4 @@
-package com.asmierciak.cryptography.cryptosystems;
+package com.asmierciak.cryptography.keys;
 
 public interface KeyGenerator {
     void generateKeys();

@@ -1,5 +1,9 @@
-package com.asmierciak.cryptography.cryptosystems;
+package com.asmierciak.cryptography.ciphers.rsa;
 
+import com.asmierciak.cryptography.ciphers.rsa.RsaDecryptor;
+import com.asmierciak.cryptography.keys.rsa.RsaPrivateKey;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -7,9 +11,6 @@ import org.junit.runners.Parameterized;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
 public class RsaDecryptorTests {
@@ -37,12 +38,12 @@ public class RsaDecryptorTests {
 
     @Test
     public void testOutputIsNotNull() throws Exception {
-        assertThat(actualOutput, is(notNullValue()));
+        Assert.assertThat(actualOutput, CoreMatchers.is(CoreMatchers.notNullValue()));
     }
 
     @Test
     public void testOutputIsValid() throws Exception {
-        assertThat(actualOutput, is(equalTo(expectedOutput)));
+        Assert.assertThat(actualOutput, CoreMatchers.is(CoreMatchers.equalTo(expectedOutput)));
     }
 
     @Test(expected = IllegalArgumentException.class)

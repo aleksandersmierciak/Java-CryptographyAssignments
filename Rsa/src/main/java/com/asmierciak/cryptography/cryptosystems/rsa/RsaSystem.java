@@ -1,4 +1,12 @@
-package com.asmierciak.cryptography.cryptosystems;
+package com.asmierciak.cryptography.cryptosystems.rsa;
+
+import com.asmierciak.cryptography.ciphers.rsa.RsaDecryptor;
+import com.asmierciak.cryptography.ciphers.rsa.RsaEncryptor;
+import com.asmierciak.cryptography.cryptosystems.Cryptosystem;
+import com.asmierciak.cryptography.ciphers.Decryptor;
+import com.asmierciak.cryptography.ciphers.Encryptor;
+import com.asmierciak.cryptography.keys.KeyGenerator;
+import com.asmierciak.cryptography.keys.rsa.RsaKeyGenerator;
 
 public class RsaSystem implements Cryptosystem {
     private Encryptor encryptor;

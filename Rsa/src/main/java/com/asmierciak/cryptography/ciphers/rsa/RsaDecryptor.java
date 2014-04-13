@@ -1,4 +1,7 @@
-package com.asmierciak.cryptography.cryptosystems;
+package com.asmierciak.cryptography.ciphers.rsa;
+
+import com.asmierciak.cryptography.ciphers.Decryptor;
+import com.asmierciak.cryptography.keys.rsa.RsaPrivateKey;
 
 import java.math.BigInteger;
 

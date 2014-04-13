@@ -1,5 +1,4 @@
 /**
- * This package contains cryptosystems implemented
- * for various cryptography assignments.
+ * This package contains cryptosystem interface.
  */
 package com.asmierciak.cryptography.cryptosystems;

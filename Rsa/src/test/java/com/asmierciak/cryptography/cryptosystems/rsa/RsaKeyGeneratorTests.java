@@ -15,10 +15,6 @@ import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class RsaKeyGeneratorTests {
-    private final BigInteger p;
-
-    private final BigInteger q;
-
     /**
      * Represents the result of multiplying p and q (symbol: n).
      */
@@ -34,8 +30,6 @@ public class RsaKeyGeneratorTests {
      */
     private final BigInteger expectedPrivateExponent;
 
-    private final RsaKeyGenerator generator;
-
     private final RsaPublicKey publicKey;
 
     private final RsaPrivateKey privateKey;
@@ -43,13 +37,11 @@ public class RsaKeyGeneratorTests {
     public RsaKeyGeneratorTests(BigInteger p, BigInteger q,
                                 BigInteger expectedModulus,
                                 BigInteger expectedPublicExponent, BigInteger expectedPrivateExponent) {
-        this.p = p;
-        this.q = q;
         this.expectedModulus = expectedModulus;
         this.expectedPublicExponent = expectedPublicExponent;
         this.expectedPrivateExponent = expectedPrivateExponent;
 
-        generator = new RsaKeyGenerator(p, q);
+        RsaKeyGenerator generator = new RsaKeyGenerator(p, q);
         generator.generateKeys();
 
         publicKey = generator.getPublicKey();

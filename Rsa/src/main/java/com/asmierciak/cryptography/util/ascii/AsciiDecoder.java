@@ -12,6 +12,8 @@ public class AsciiDecoder implements TextDecoder {
             builder.append((char)number.byteValue());
             number = number.shiftRight(8);
         }
-        return builder.toString();
+        // We iterate starting at the least significant bit;
+        // a reverse is necessary.
+        return builder.reverse().toString();
     }
 }

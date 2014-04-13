@@ -53,7 +53,6 @@ public class RsaKeyGeneratorTests {
                     BigInteger.valueOf(3233), BigInteger.valueOf(7), BigInteger.valueOf(1783)
                 } };
         return Arrays.asList(data);
-
     }
 
     @Test(expected = IllegalArgumentException.class)

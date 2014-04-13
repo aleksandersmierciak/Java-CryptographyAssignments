@@ -9,6 +9,7 @@ public class RsaEncryptor implements Encryptor {
     private RsaPublicKey key;
 
     public RsaEncryptor(RsaPublicKey key) {
+        if (key == null) throw new IllegalArgumentException("Key cannot be null");
         this.key = key;
     }
 

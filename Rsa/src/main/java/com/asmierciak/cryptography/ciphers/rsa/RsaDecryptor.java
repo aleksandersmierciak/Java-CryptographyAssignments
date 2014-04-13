@@ -9,6 +9,7 @@ public class RsaDecryptor implements Decryptor {
     private RsaPrivateKey key;
 
     public RsaDecryptor(RsaPrivateKey key) {
+        if (key == null) throw new IllegalArgumentException("Key cannot be null");
         this.key = key;
     }
 

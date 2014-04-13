@@ -1,9 +1,7 @@
 package com.asmierciak.cryptography.ciphers.rsa;
 
-import com.asmierciak.cryptography.ciphers.rsa.RsaEncryptor;
 import com.asmierciak.cryptography.keys.rsa.RsaPublicKey;
 import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -11,6 +9,8 @@ import org.junit.runners.Parameterized;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
+
+import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
 public class RsaEncryptorTests {
@@ -36,25 +36,30 @@ public class RsaEncryptorTests {
         return Arrays.asList(data);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIfSuppliedWithNullKey() throws Exception {
+        new RsaEncryptor(null);
+    }
+
     @Test
     public void testOutputIsNotNull() throws Exception {
-        Assert.assertThat(actualOutput, CoreMatchers.is(CoreMatchers.notNullValue()));
+        assertThat(actualOutput, CoreMatchers.is(CoreMatchers.notNullValue()));
     }
 
     @Test
     public void testOutputIsValid() throws Exception {
-        Assert.assertThat(actualOutput, CoreMatchers.is(CoreMatchers.equalTo(expectedOutput)));
+        assertThat(actualOutput, CoreMatchers.is(CoreMatchers.equalTo(expectedOutput)));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testThrowsIfInputIsGreaterThanModulus() {
+    public void testThrowsIfInputIsGreaterThanModulus() throws Exception {
         RsaPublicKey key = new RsaPublicKey(BigInteger.ONE, BigInteger.ONE);
         RsaEncryptor encryptor = new RsaEncryptor(key);
         encryptor.encrypt(BigInteger.TEN);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testThrowsIfInputIsEqualToModulus() {
+    public void testThrowsIfInputIsEqualToModulus() throws Exception {
         RsaPublicKey key = new RsaPublicKey(BigInteger.ONE, BigInteger.ONE);
         RsaEncryptor encryptor = new RsaEncryptor(key);
         encryptor.encrypt(BigInteger.ONE);

@@ -1,10 +1,10 @@
 package com.asmierciak.cryptography.hashing;
 
+import com.asmierciak.util.bytes.ArrayConversions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -44,30 +44,11 @@ public class MessageChunkTests {
         Object[][] data = new Object[][]
                 {
                         {
-                                convertBinaryStringToBytes(bitString),
-                                convertBinaryStringsToBytes(words)
+                                ArrayConversions.binaryStringToByteArray(bitString),
+                                ArrayConversions.binaryStringsToByteArrays(words)
                         }
                 };
         return Arrays.asList(data);
-    }
-
-    private static byte[][] convertBinaryStringsToBytes(String[] binaryStrings) {
-        byte[][] byteArrays = new byte[binaryStrings.length][];
-        for (int i = 0; i < byteArrays.length; ++i) {
-            byteArrays[i] = convertBinaryStringToBytes(binaryStrings[i]);
-        }
-        return byteArrays;
-    }
-
-    private static byte[] convertBinaryStringToBytes(String binaryString) {
-        BigInteger number = new BigInteger(binaryString, 2);
-        byte[] bytes = number.toByteArray();
-        if (bytes[0] == 0) {
-            byte[] temp = new byte[bytes.length - 1];
-            System.arraycopy(bytes, 1, temp, 0, temp.length);
-            bytes = temp;
-        }
-        return bytes;
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -83,5 +64,16 @@ public class MessageChunkTests {
     @Test
     public void testWordsAreValid() {
         assertThat(chunk.getWords(), is(expectedWords));
+    }
+
+    @Test
+    public void testHashIsNotNull() {
+        chunk.calculateHash(new byte[20]);
+        assertThat(chunk.getHash(), is(notNullValue()));
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testThrowsIfHashGivenIsNot20Bytes() {
+        chunk.calculateHash(new byte[19]);
     }
 }

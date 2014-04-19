@@ -1,6 +1,5 @@
 package com.asmierciak.cryptography.util.ascii;
 
-import com.asmierciak.cryptography.util.ascii.AsciiDecoder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -9,26 +8,22 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
 public class AsciiDecoderTests {
-    private final BigInteger input;
 
     private final String expectedOutput;
-
-    private final AsciiDecoder decoder;
 
     private final String actualOutput;
 
     public AsciiDecoderTests(BigInteger input, String expectedOutput) {
-        this.input = input;
         this.expectedOutput = expectedOutput;
 
-        decoder = new AsciiDecoder();
+        AsciiDecoder decoder = new AsciiDecoder();
         actualOutput = decoder.decode(input);
     }
 

@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(Parameterized.class)
 public class RsaEncryptorTests {

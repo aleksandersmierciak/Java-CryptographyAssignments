@@ -20,7 +20,7 @@ public class MessageTests {
 
     private final int expectedChunkCount;
 
-    private final byte[] expectedHash;
+    private final int[] expectedHash;
 
     public MessageTests(byte[] input, int expectedLength, int expectedChunkCount) {
         message = new Message(input);

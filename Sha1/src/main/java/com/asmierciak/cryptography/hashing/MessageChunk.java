@@ -5,13 +5,16 @@ import java.util.Arrays;
 public class MessageChunk {
     public final static int CHUNK_VALID_SIZE_IN_BYTES = 64;
 
-    private final static int CHUNK_WORD_SIZE_IN_BYTES = 4;
+    private final static int WORD_SIZE_IN_BYTES = 4;
+
+    private final static int WORD_EXTENSION_IN_BYTES = 64;
 
     private final byte[] data;
 
-    private final byte[][] words = new byte[CHUNK_VALID_SIZE_IN_BYTES / CHUNK_WORD_SIZE_IN_BYTES][];
+    private final int[] words =
+            new int[CHUNK_VALID_SIZE_IN_BYTES / WORD_SIZE_IN_BYTES + WORD_EXTENSION_IN_BYTES];
 
-    private byte[] hash;
+    private int[] hash;
 
     public MessageChunk(byte[] data) {
         if (data.length != CHUNK_VALID_SIZE_IN_BYTES) {
@@ -23,27 +26,30 @@ public class MessageChunk {
         readWords();
     }
 
-    public byte[][] getWords() {
+    public int[] getWords() {
         return words;
     }
 
-    public byte[] getHash()
+    public int[] getHash()
     {
         return hash;
     }
 
     private void readWords() {
-        for (int i = 0; i < data.length / CHUNK_WORD_SIZE_IN_BYTES; ++i) {
-            words[i] = Arrays.copyOfRange(data, i * CHUNK_WORD_SIZE_IN_BYTES, (i + 1) * CHUNK_WORD_SIZE_IN_BYTES);
+        for (int i = 0; i < data.length / WORD_SIZE_IN_BYTES; ++i) {
+            int startIndex = i * WORD_SIZE_IN_BYTES;
+            byte[] array = Arrays.copyOfRange(data, startIndex, startIndex + WORD_SIZE_IN_BYTES);
+            words[i] = java.nio.ByteBuffer.wrap(array).getInt();
         }
     }
 
-    public void calculateHash(byte[] previousChunkHash) {
-        if (previousChunkHash.length != 20) {
-            throw new IllegalArgumentException("Hash given had " + previousChunkHash.length + " bytes; length of 20 bytes expected");
+    public void calculateHash(int[] previousChunkHash) {
+        if (previousChunkHash.length != 5) {
+            throw new IllegalArgumentException(
+                    "Hash given had " + previousChunkHash.length + " bytes; length of 20 bytes expected");
         }
 
-        hash = new byte[160];
+        hash = previousChunkHash;
         // TODO: implement creating SHA-1 hash
     }
 }

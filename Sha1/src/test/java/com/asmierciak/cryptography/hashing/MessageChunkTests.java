@@ -8,17 +8,18 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
 public class MessageChunkTests {
-    private final byte[][] expectedWords;
+    private final int[] expectedWords;
 
     private final MessageChunk chunk;
 
-    public MessageChunkTests(byte[] inputData, byte[][] expectedWords) {
+    public MessageChunkTests(byte[] inputData, int[] expectedWords) {
         this.expectedWords = expectedWords;
         chunk = new MessageChunk(inputData);
     }
@@ -45,7 +46,7 @@ public class MessageChunkTests {
                 {
                         {
                                 ArrayConversions.binaryStringToByteArray(bitString),
-                                ArrayConversions.binaryStringsToByteArrays(words)
+                                ArrayConversions.binaryStringsToIntegers(words)
                         }
                 };
         return Arrays.asList(data);
@@ -62,18 +63,25 @@ public class MessageChunkTests {
     }
 
     @Test
-    public void testWordsAreValid() {
-        assertThat(chunk.getWords(), is(expectedWords));
+    public void testThereAre80Words() {
+        assertThat(chunk.getWords().length, is(equalTo(80)));
+    }
+
+    @Test
+    public void testInitialWordsAreValid() {
+        int[] actual = Arrays.copyOfRange(chunk.getWords(), 0, 16);
+        int[] expected = Arrays.copyOfRange(expectedWords, 0, 16);
+        assertThat(actual, is(expected));
     }
 
     @Test
     public void testHashIsNotNull() {
-        chunk.calculateHash(new byte[20]);
+        chunk.calculateHash(new int[5]);
         assertThat(chunk.getHash(), is(notNullValue()));
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testThrowsIfHashGivenIsNot20Bytes() {
-        chunk.calculateHash(new byte[19]);
+        chunk.calculateHash(new int[6]);
     }
 }

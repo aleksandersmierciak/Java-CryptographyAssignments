@@ -4,14 +4,11 @@
 .idea/dictionaries/
 .idea/libraries/*.xml
 
-# Gradle
+# Gradle cache
 .gradle/
-build/
 
-# Gradle wrapper
-gradle
-gradlew
-gradlew.bat
+# build directories
+build/
 
 # post-build files
 out/

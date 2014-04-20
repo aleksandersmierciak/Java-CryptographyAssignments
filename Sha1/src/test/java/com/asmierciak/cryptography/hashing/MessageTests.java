@@ -22,23 +22,24 @@ public class MessageTests {
     private final byte[] expectedOutput;
 
     public MessageTests(byte[] input, byte[] expectedOutput, int expectedLength, int expectedChunkCount) {
-        message = new Message(input);
-
         this.expectedLength = expectedLength;
         this.expectedChunkCount = expectedChunkCount;
         this.expectedOutput = expectedOutput;
 
+        message = new Message(input);
         message.calculateHash();
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
-        byte[] inputBytes = {65,108,97,32,109,97,32,107,111,116,97}; // byte representation of UTF-8 "Ala ma kota"
-        byte[] outputBytes = {-85,-15,-31,92,88,-69,107,72,80,-75,50,84,51,56,100,-58,16,50,10,50};
-
         Object[][] data = new Object[][]
                 {
-                        { inputBytes, outputBytes, 64, 1 }
+                        {
+                                new byte[]{65,108,97,32,109,97,32,107,111,116,97}, // byte representation of UTF-8 "Ala ma kota"
+                                new byte[]{-85,-15,-31,92,88,-69,107,72,80,-75,50,84,51,56,100,-58,16,50,10,50},
+                                64,
+                                1
+                        }
                 };
         return Arrays.asList(data);
     }

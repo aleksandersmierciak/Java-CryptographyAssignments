@@ -9,8 +9,6 @@ import java.util.List;
 public class Message {
     private final byte[] data;
 
-    private int length;
-
     private final List<MessageChunk> chunks = new ArrayList<>();
 
     private int[] hash;
@@ -20,8 +18,8 @@ public class Message {
         {
             throw new IllegalArgumentException("Input cannot be an empty array");
         }
-        this.data = data;
-        this.length = data.length;
+
+        this.data = MessageFiller.fillMessage(data);
         splitDataIntoChunks();
     }
 
@@ -34,7 +32,7 @@ public class Message {
     }
 
     public int getLength() {
-        return length;
+        return data.length;
     }
 
     public List<MessageChunk> getChunks() {

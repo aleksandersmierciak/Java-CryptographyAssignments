@@ -2,6 +2,7 @@ package com.asmierciak.cryptography.hashing;
 
 import com.asmierciak.util.bytes.MessageSplitter;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,16 @@ public class Message {
 
     public int[] getHash() {
         return hash;
+    }
+
+    public byte[] getHashBytes()
+    {
+        byte[] hashBytes = new byte[hash.length * 4];
+        for (int i = 0; i < hash.length; ++i) {
+            byte[] singleInteger = ByteBuffer.allocate(4).putInt(hash[i]).array();
+            System.arraycopy(singleInteger, 0, hashBytes, i * 4, 4);
+        }
+        return hashBytes;
     }
 
     public void calculateHash() {

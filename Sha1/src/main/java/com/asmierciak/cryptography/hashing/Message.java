@@ -54,7 +54,6 @@ public class Message {
     }
 
     public void calculateHash() {
-        // TODO: implement creating SHA-1 hash
         initializeHash();
         for (MessageChunk chunk : chunks) {
             chunk.calculateHash(hash);

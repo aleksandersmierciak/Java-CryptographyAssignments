@@ -4,6 +4,7 @@ import com.asmierciak.util.bytes.MessageSplitter;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Message {
@@ -56,7 +57,7 @@ public class Message {
     public void calculateHash() {
         initializeHash();
         for (MessageChunk chunk : chunks) {
-            chunk.calculateHash(hash);
+            chunk.calculateHash(Arrays.copyOf(hash, hash.length));
             addHashFromChunk(chunk);
         }
     }

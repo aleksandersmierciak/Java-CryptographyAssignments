@@ -29,11 +29,11 @@ public class MessageFiller {
     }
 
     private static void appendOne(byte[] array, int position) {
-        array[position] = 1;
+        array[position] = (byte)0x80;
     }
 
     private static void appendOriginalLength(byte[] array, int originalLength) {
-        byte[] longBytes = LongConversions.longToBytes(originalLength);
+        byte[] longBytes = LongConversions.longToBytes(originalLength * 8L);
         System.arraycopy(longBytes, 0, array, array.length - 8, 8);
     }
 }

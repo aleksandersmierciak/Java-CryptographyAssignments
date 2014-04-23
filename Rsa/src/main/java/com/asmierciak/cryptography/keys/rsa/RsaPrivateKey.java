@@ -1,10 +1,8 @@
 package com.asmierciak.cryptography.keys.rsa;
 
-import com.asmierciak.cryptography.keys.PrivateKey;
-
 import java.math.BigInteger;
 
-public class RsaPrivateKey implements PrivateKey, RsaKey {
+public class RsaPrivateKey implements RsaKey {
     private BigInteger modulus;
 
     private BigInteger privateExponent;

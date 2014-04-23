@@ -7,7 +7,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
+            <option value="D:\Projects\Java-CryptographyAssignments" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -17,7 +17,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/ElGamal" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/ElGamal" />
+            <option value="D:\Projects\Java-CryptographyAssignments\ElGamal" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -27,7 +27,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/OpenSsl" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/OpenSsl" />
+            <option value="D:\Projects\Java-CryptographyAssignments\OpenSsl" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -37,7 +37,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/Rsa" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/Rsa" />
+            <option value="D:\Projects\Java-CryptographyAssignments\Rsa" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -47,7 +47,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/Sha1" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/Sha1" />
+            <option value="D:\Projects\Java-CryptographyAssignments\Sha1" />
           </set>
         </option>
       </GradleProjectSettings>

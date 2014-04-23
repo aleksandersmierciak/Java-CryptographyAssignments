@@ -50,12 +50,10 @@ public class RsaKeyGenerator implements KeyGenerator {
         return coprime;
     }
 
-    @Override
     public RsaPublicKey getPublicKey() {
         return publicKey;
     }
 
-    @Override
     public RsaPrivateKey getPrivateKey() {
         return privateKey;
     }

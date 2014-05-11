@@ -8,6 +8,10 @@ public class ElGamalPrivateKey implements PrivateKey {
     private final BigInteger x;
 
     public ElGamalPrivateKey(BigInteger x) {
+        if (x == null) {
+            throw new IllegalArgumentException("x cannot be null");
+        }
+
         this.x = x;
     }
 

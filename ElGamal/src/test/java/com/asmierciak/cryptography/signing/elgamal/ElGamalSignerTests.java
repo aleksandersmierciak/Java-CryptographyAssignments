@@ -80,7 +80,7 @@ public class ElGamalSignerTests {
 
     @Test (expected = IllegalArgumentException.class)
     public void testThrowsIfInputIsNull() {
-        ElGamalSigner signer = new ElGamalSigner(
+        Signer signer = new ElGamalSigner(
                 new ElGamalPublicKey(BigInteger.ZERO, BigInteger.ZERO, BigInteger.ZERO),
                 new ElGamalPrivateKey(BigInteger.ZERO));
         signer.generateSignature(null);
@@ -89,10 +89,5 @@ public class ElGamalSignerTests {
     @Test
     public void testSignatureIsNotNull() {
         assertThat(signature, is(notNullValue()));
-    }
-
-    @Test
-    public void testSIsNotZero() {
-        assertThat(signature.getS(), is(not(BigInteger.ZERO)));
     }
 }

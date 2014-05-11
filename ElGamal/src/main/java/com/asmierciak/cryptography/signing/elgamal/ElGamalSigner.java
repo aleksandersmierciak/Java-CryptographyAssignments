@@ -6,7 +6,7 @@ import com.asmierciak.cryptography.keys.elgamal.ElGamalPublicKey;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-public class ElGamalSigner {
+public class ElGamalSigner implements Signer {
     private final ElGamalPublicKey publicKey;
 
     private final ElGamalPrivateKey privateKey;
@@ -36,6 +36,7 @@ public class ElGamalSigner {
         p = publicKey.getP();
     }
 
+    @Override
     public void generateSignature(BigInteger m) {
         if (m == null) {
             throw new IllegalArgumentException("Input cannot be null");

@@ -8,6 +8,8 @@ import java.security.SecureRandom;
 public class ElGamalKeyGenerator implements KeyGenerator {
     private static final int P_MIN = 4;
 
+    private final SecureRandom random = new SecureRandom();
+
     private final BigInteger p;
 
     private final BigInteger g;
@@ -29,7 +31,11 @@ public class ElGamalKeyGenerator implements KeyGenerator {
         }
 
         this.p = p;
-        this.g = BigInteger.ZERO;
+        BigInteger gValue;
+        do {
+            gValue = new BigInteger(p.bitLength(), random);
+        } while (gValue.compareTo(p) >= 0);
+        this.g = gValue;
     }
 
     public ElGamalPublicKey getPublicKey() {
@@ -51,8 +57,13 @@ public class ElGamalKeyGenerator implements KeyGenerator {
 
     private void chooseSecretKey() {
         do {
-            x = BigInteger.probablePrime(p.bitLength(), new SecureRandom());
-        } while (x.compareTo(p.subtract(BigInteger.ONE)) >= 0);
+            x = new BigInteger(p.bitLength(), random);
+        } while (!isInValidRangeForASecretKey(x));
+    }
+
+    private boolean isInValidRangeForASecretKey(BigInteger value) {
+        return (value.compareTo(p.subtract(BigInteger.ONE)) < 0 &&
+                value.compareTo(BigInteger.ONE) > 0);
     }
 
     private void computeY() {

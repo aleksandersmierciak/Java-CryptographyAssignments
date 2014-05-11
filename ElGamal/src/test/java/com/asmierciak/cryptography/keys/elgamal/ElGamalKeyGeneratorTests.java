@@ -34,7 +34,16 @@ public class ElGamalKeyGeneratorTests {
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]
                 {
-                        { BigInteger.valueOf(61) }
+                        { BigInteger.valueOf(5) },
+                        { BigInteger.valueOf(7) },
+                        { BigInteger.valueOf(11) },
+                        { BigInteger.valueOf(13) },
+
+                        { BigInteger.valueOf(4663) },
+                        { BigInteger.valueOf(6947) },
+
+                        // RSA-768
+                        { new BigInteger("1230186684530117755130494958384962720772853569595334792197322452151726400507263657518745202199786469389956474942774063845925192557326303453731548268507917026122142913461670429214311602221240479274737794080665351419597459856902143413") }
                 };
         return Arrays.asList(data);
     }
@@ -60,7 +69,7 @@ public class ElGamalKeyGeneratorTests {
     }
 
     @Test
-    public void testPublicKeyPIsValid() {
+    public void testPublicKeyPIsSameAsInput() {
         assertThat(publicKey.getP(), is(equalTo(p)));
     }
 
@@ -70,8 +79,28 @@ public class ElGamalKeyGeneratorTests {
     }
 
     @Test
+    public void testPublicKeyGIsLessThanPublicKeyP() {
+        assertThat(publicKey.getG(), lessThan(p));
+    }
+
+    @Test
+    public void testPublicKeyGIsNonNegativeInteger() {
+        assertThat(publicKey.getG(), greaterThanOrEqualTo(BigInteger.ZERO));
+    }
+
+    @Test
     public void testPublicKeyYIsNotNull() {
         assertThat(publicKey.getY(), is(notNullValue()));
+    }
+
+    @Test
+    public void testPublicKeyYIsNonNegativeInteger() {
+        assertThat(publicKey.getY(), greaterThanOrEqualTo(BigInteger.ZERO));
+    }
+
+    @Test
+    public void testPublicKeyYIsLessThanPublicKeyP() {
+        assertThat(publicKey.getY(), lessThan(p));
     }
 
     @Test
@@ -82,5 +111,15 @@ public class ElGamalKeyGeneratorTests {
     @Test
     public void testPrivateKeyXIsNotNull() {
         assertThat(privateKey.getX(), is(notNullValue()));
+    }
+
+    @Test
+    public void testPrivateKeyXIsGreaterThanOne() {
+        assertThat(privateKey.getX(), greaterThan(BigInteger.ONE));
+    }
+
+    @Test
+    public void testPrivateKeyXIsLessThanPMinusOne() {
+        assertThat(privateKey.getX(), lessThan(p.subtract(BigInteger.ONE)));
     }
 }

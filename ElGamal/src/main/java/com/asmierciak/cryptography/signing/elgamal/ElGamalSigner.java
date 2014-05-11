@@ -74,7 +74,6 @@ public class ElGamalSigner implements Signer {
 
     private void computeS(BigInteger m) {
         BigInteger x = privateKey.getX();
-        // TODO: hash m first using a collision-resistant function
         BigInteger modifiedHash = m.subtract(x.multiply(r));
         BigInteger modInverseOfK = k.modInverse(p.subtract(BigInteger.ONE));
         s = modifiedHash.multiply(modInverseOfK);

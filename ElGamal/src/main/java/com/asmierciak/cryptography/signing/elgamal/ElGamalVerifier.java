@@ -29,14 +29,14 @@ public class ElGamalVerifier {
                 s.compareTo(BigInteger.ZERO) > 0 && r.compareTo(p.subtract(BigInteger.ONE)) < 0);
     }
 
-    private boolean validateSignature(ElGamalSignature signature, BigInteger input) {
+    private boolean validateSignature(ElGamalSignature signature, BigInteger m) {
         BigInteger p = publicKey.getP();
         BigInteger g = publicKey.getG();
         BigInteger y = publicKey.getY();
         BigInteger r = signature.getR();
         BigInteger s = signature.getS();
 
-        BigInteger leftSide = g.modPow(input, p);
+        BigInteger leftSide = g.modPow(m, p);
         BigInteger rightSide = (y.modPow(r, p)).multiply(r.modPow(s, p));
 
         return leftSide.compareTo(rightSide) == 0;

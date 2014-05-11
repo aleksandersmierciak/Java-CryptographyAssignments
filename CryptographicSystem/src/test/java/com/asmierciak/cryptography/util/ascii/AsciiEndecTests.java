@@ -1,5 +1,7 @@
 package com.asmierciak.cryptography.util.ascii;
 
+import com.asmierciak.cryptography.util.ascii.AsciiDecoder;
+import com.asmierciak.cryptography.util.ascii.AsciiEncoder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

@@ -1,5 +1,6 @@
 package com.asmierciak.cryptography.util.ascii;
 
+import com.asmierciak.cryptography.util.ascii.AsciiDecoder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -8,40 +9,41 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
-public class AsciiEncoderTests {
-    private final BigInteger expectedOutput;
+public class AsciiDecoderTests {
 
-    private final BigInteger actualOutput;
+    private final String expectedOutput;
 
-    public AsciiEncoderTests(String input, BigInteger expectedOutput) {
+    private final String actualOutput;
+
+    public AsciiDecoderTests(BigInteger input, String expectedOutput) {
         this.expectedOutput = expectedOutput;
 
-        AsciiEncoder encoder = new AsciiEncoder();
-        actualOutput = encoder.encode(input);
+        AsciiDecoder decoder = new AsciiDecoder();
+        actualOutput = decoder.decode(input);
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][] {
-                {"A", BigInteger.valueOf(65)},
-                {"AA", BigInteger.valueOf(16705)}
+                {BigInteger.valueOf(65), "A"},
+                {BigInteger.valueOf(16705), "AA"}
         };
         return Arrays.asList(data);
     }
 
     @Test
-    public void testEncodedIsNotNull() throws Exception {
+    public void testDecodedIsNotNull() throws Exception {
         assertThat(actualOutput, is(notNullValue()));
     }
 
     @Test
-    public void testEncodedIsValid() throws Exception {
+    public void testDecodedIsValid() throws Exception {
         assertThat(actualOutput, is(equalTo((expectedOutput))));
     }
 }

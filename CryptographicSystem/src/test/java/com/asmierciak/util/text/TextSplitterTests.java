@@ -1,5 +1,6 @@
 package com.asmierciak.util.text;
 
+import com.asmierciak.util.text.TextSplitter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

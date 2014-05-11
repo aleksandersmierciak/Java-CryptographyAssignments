@@ -1,14 +1,17 @@
-package com.asmierciak.cryptography.hashing;
+package com.asmierciak.cryptography.hashing.sha;
+
+import com.asmierciak.cryptography.hashing.HashFunction;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 import static com.asmierciak.util.numbers.HexConversions.bytesToHex;
 
-public class Sha1 {
+public class Sha1 implements HashFunction {
     private static final Charset utf8 = StandardCharsets.UTF_8;
 
-    public static String hash(String input) {
+    @Override
+    public String hash(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException("Input cannot be null or empty");
         }

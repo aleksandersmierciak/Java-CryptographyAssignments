@@ -1,4 +1,4 @@
-package com.asmierciak.cryptography.hashing;
+package com.asmierciak.cryptography.hashing.sha;
 
 import java.util.Arrays;
 

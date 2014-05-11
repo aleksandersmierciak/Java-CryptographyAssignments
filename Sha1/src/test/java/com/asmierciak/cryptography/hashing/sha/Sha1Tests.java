@@ -1,5 +1,6 @@
-package com.asmierciak.cryptography.hashing;
+package com.asmierciak.cryptography.hashing.sha;
 
+import com.asmierciak.cryptography.hashing.HashFunction;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -8,9 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 
 @RunWith(Parameterized.class)
 public class Sha1Tests {
@@ -19,7 +18,8 @@ public class Sha1Tests {
     private final String expectedHash;
 
     public Sha1Tests(String input, String expectedHash) {
-        actualHash = Sha1.hash(input);
+        HashFunction sha1 = new Sha1();
+        actualHash = sha1.hash(input);
         this.expectedHash = expectedHash;
     }
 
@@ -55,11 +55,11 @@ public class Sha1Tests {
 
     @Test (expected = IllegalArgumentException.class)
     public void testThrowsIfInputIsNull() {
-        Sha1.hash(null);
+        new Sha1().hash(null);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testThrowsIfInputIsEmpty() {
-        Sha1.hash("");
+        new Sha1().hash("");
     }
 }

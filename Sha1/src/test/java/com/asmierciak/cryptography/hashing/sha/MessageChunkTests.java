@@ -1,5 +1,6 @@
-package com.asmierciak.cryptography.hashing;
+package com.asmierciak.cryptography.hashing.sha;
 
+import com.asmierciak.cryptography.hashing.sha.MessageChunk;
 import com.asmierciak.util.bytes.ArrayConversions;
 import org.junit.Test;
 import org.junit.runner.RunWith;

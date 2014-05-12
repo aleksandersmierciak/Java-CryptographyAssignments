@@ -12,14 +12,14 @@ public class ElGamalSignature {
             throw new IllegalArgumentException("r cannot be null");
         }
         if (r.compareTo(BigInteger.ZERO) <= 0) {
-            throw new IllegalArgumentException("r cannot be non-positive");
+            throw new IllegalArgumentException("r cannot be non-positive, was " + r);
         }
 
         if (s == null) {
             throw new IllegalArgumentException("s cannot be null");
         }
         if (s.compareTo(BigInteger.ZERO) <= 0) {
-            throw new IllegalArgumentException("s cannot be non-positive");
+            throw new IllegalArgumentException("s cannot be non-positive, was " + s);
         }
 
         this.r = r;

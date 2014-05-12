@@ -47,7 +47,7 @@ public class ElGamalSigner implements Signer {
             findK();
             computeR();
             computeS(m);
-        } while (s.compareTo(BigInteger.ZERO) == 0);
+        } while (r.compareTo(BigInteger.ZERO) == 0 || s.compareTo(BigInteger.ZERO) == 0);
 
         signature = new ElGamalSignature(r, s);
     }
@@ -75,9 +75,11 @@ public class ElGamalSigner implements Signer {
 
     private void computeS(BigInteger m) {
         BigInteger x = privateKey.getX();
+        BigInteger pSub1 = p.subtract(BigInteger.ONE);
+
         BigInteger modifiedHash = m.subtract(x.multiply(r));
-        BigInteger modInverseOfK = k.modInverse(p.subtract(BigInteger.ONE));
-        s = modifiedHash.multiply(modInverseOfK);
+        BigInteger modInverseOfK = k.modInverse(pSub1);
+        s = (modifiedHash.multiply(modInverseOfK)).mod(pSub1);
     }
 
     public ElGamalSignature getSignature() {

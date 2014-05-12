@@ -3,7 +3,7 @@ package com.asmierciak.util.bytes;
 import java.util.Arrays;
 
 public class MessageSplitter {
-    public byte[][] split(byte[] input, int sizeLimit) {
+    public static byte[][] split(byte[] input, int sizeLimit) {
         int splitCount = (input.length + sizeLimit - 1) / sizeLimit;
         byte[][] output = new byte[splitCount][];
         for (int i = 0; i < splitCount; ++i) {

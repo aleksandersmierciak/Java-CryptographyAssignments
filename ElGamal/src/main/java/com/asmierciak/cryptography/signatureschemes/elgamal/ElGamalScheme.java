@@ -1,10 +1,10 @@
 package com.asmierciak.cryptography.signatureschemes.elgamal;
 
-import com.asmierciak.cryptography.hashing.HashFunction;
-import com.asmierciak.cryptography.keys.elgamal.ElGamalKeyGenerator;
-import com.asmierciak.cryptography.signing.elgamal.ElGamalSignature;
-import com.asmierciak.cryptography.signing.elgamal.ElGamalSigner;
-import com.asmierciak.cryptography.signing.elgamal.ElGamalVerifier;
+import com.asmierciak.cryptography.hashfunctions.HashFunction;
+import com.asmierciak.cryptography.signatureschemes.elgamal.keys.ElGamalKeyGenerator;
+import com.asmierciak.cryptography.signatureschemes.elgamal.signing.ElGamalSignature;
+import com.asmierciak.cryptography.signatureschemes.elgamal.signing.ElGamalSigner;
+import com.asmierciak.cryptography.signatureschemes.elgamal.signing.ElGamalVerifier;
 import com.asmierciak.cryptography.util.TextEncoder;
 
 import java.math.BigInteger;

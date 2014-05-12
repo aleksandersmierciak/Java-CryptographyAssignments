@@ -1,8 +1,8 @@
 package com.asmierciak.cryptography.signatureschemes.elgamal;
 
-import com.asmierciak.cryptography.hashing.HashFunction;
-import com.asmierciak.cryptography.hashing.sha.Sha1;
-import com.asmierciak.cryptography.signing.elgamal.ElGamalSignature;
+import com.asmierciak.cryptography.hashfunctions.HashFunction;
+import com.asmierciak.cryptography.hashfunctions.sha.Sha1;
+import com.asmierciak.cryptography.signatureschemes.elgamal.signing.ElGamalSignature;
 import com.asmierciak.cryptography.util.TextEncoder;
 import com.asmierciak.cryptography.util.ascii.AsciiEncoder;
 import org.junit.Test;

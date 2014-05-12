@@ -20,8 +20,7 @@ public class MessageSplitterTests {
     public MessageSplitterTests(byte[] message, int splitCount, byte[][] expectedOutput) {
         this.expectedOutput = expectedOutput;
 
-        MessageSplitter splitter = new MessageSplitter();
-        actualOutput = splitter.split(message, splitCount);
+        actualOutput = MessageSplitter.split(message, splitCount);
     }
 
     @Parameterized.Parameters

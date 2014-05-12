@@ -2,12 +2,12 @@ package com.asmierciak.cryptography.signatureschemes.elgamal.signing;
 
 import com.asmierciak.cryptography.signatureschemes.elgamal.keys.ElGamalPrivateKey;
 import com.asmierciak.cryptography.signatureschemes.elgamal.keys.ElGamalPublicKey;
-import com.asmierciak.cryptography.signatureschemes.signing.Signer;
+import com.asmierciak.cryptography.signatureschemes.signing.SignatureSigner;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-public class ElGamalSigner implements Signer {
+public class ElGamalSigner implements SignatureSigner {
     private final ElGamalPublicKey publicKey;
 
     private final ElGamalPrivateKey privateKey;
@@ -35,6 +35,10 @@ public class ElGamalSigner implements Signer {
         this.privateKey = privateKey;
 
         p = publicKey.getP();
+    }
+
+    public ElGamalSignature getSignature() {
+        return signature;
     }
 
     @Override
@@ -80,9 +84,5 @@ public class ElGamalSigner implements Signer {
         BigInteger modifiedHash = m.subtract(x.multiply(r));
         BigInteger modInverseOfK = k.modInverse(pSub1);
         s = (modifiedHash.multiply(modInverseOfK)).mod(pSub1);
-    }
-
-    public ElGamalSignature getSignature() {
-        return signature;
     }
 }

@@ -1,19 +1,27 @@
 package com.asmierciak.cryptography.signatureschemes.elgamal.signing;
 
 import com.asmierciak.cryptography.signatureschemes.elgamal.keys.ElGamalPublicKey;
+import com.asmierciak.cryptography.signatureschemes.signing.SignatureVerifier;
 
 import java.math.BigInteger;
 
-public class ElGamalVerifier {
-    private ElGamalPublicKey publicKey;
+public class ElGamalVerifier implements SignatureVerifier {
+    private final ElGamalPublicKey publicKey;
+
+    private ElGamalSignature signature;
 
     public ElGamalVerifier(ElGamalPublicKey publicKey) {
         this.publicKey = publicKey;
     }
 
-    public boolean verify(ElGamalSignature signature, BigInteger input) {
+    public void setSignature(ElGamalSignature signature) {
+        this.signature = signature;
+    }
+
+    @Override
+    public boolean verify(BigInteger input) {
         if (signature == null) {
-            throw new IllegalArgumentException("Signature cannot be null");
+            throw new IllegalArgumentException("Signature cannot be null; set it first");
         }
         if (input == null) {
             throw new IllegalArgumentException("Input cannot be null");
@@ -21,6 +29,11 @@ public class ElGamalVerifier {
 
         return checkPreconditions(signature.getR(), signature.getS()) &&
                 validateSignature(signature, input);
+    }
+
+    public boolean verify(ElGamalSignature signature, BigInteger input) {
+        this.signature = signature;
+        return verify(input);
     }
 
     private boolean checkPreconditions(BigInteger r, BigInteger s) {

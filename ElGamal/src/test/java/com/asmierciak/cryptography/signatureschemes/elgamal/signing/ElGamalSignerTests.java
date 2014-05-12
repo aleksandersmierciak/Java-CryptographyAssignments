@@ -2,7 +2,7 @@ package com.asmierciak.cryptography.signatureschemes.elgamal.signing;
 
 import com.asmierciak.cryptography.signatureschemes.elgamal.keys.ElGamalPrivateKey;
 import com.asmierciak.cryptography.signatureschemes.elgamal.keys.ElGamalPublicKey;
-import com.asmierciak.cryptography.signatureschemes.signing.Signer;
+import com.asmierciak.cryptography.signatureschemes.signing.SignatureSigner;
 import com.asmierciak.cryptography.util.ascii.AsciiEncoder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -93,7 +93,7 @@ public class ElGamalSignerTests {
 
     @Test (expected = IllegalArgumentException.class)
     public void testThrowsIfInputIsNull() {
-        Signer signer = new ElGamalSigner(
+        SignatureSigner signer = new ElGamalSigner(
                 new ElGamalPublicKey(BigInteger.ZERO, BigInteger.ZERO, BigInteger.ZERO),
                 new ElGamalPrivateKey(BigInteger.ZERO));
         signer.generateSignature(null);

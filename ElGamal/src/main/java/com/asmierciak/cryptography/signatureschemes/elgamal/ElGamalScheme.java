@@ -1,5 +1,6 @@
 package com.asmierciak.cryptography.signatureschemes.elgamal;
 
+import com.asmierciak.cryptography.signatureschemes.SignatureScheme;
 import com.asmierciak.cryptography.signatureschemes.elgamal.keys.ElGamalKeyGenerator;
 import com.asmierciak.cryptography.signatureschemes.elgamal.signing.ElGamalSignature;
 import com.asmierciak.cryptography.signatureschemes.elgamal.signing.ElGamalSigner;
@@ -8,12 +9,14 @@ import com.asmierciak.cryptography.util.TextEncoder;
 
 import java.math.BigInteger;
 
-public class ElGamalScheme {
+public class ElGamalScheme implements SignatureScheme {
     private final TextEncoder textEncoder;
 
     private final ElGamalSigner signer;
 
     private final ElGamalVerifier verifier;
+
+    private ElGamalSignature signature;
 
     public ElGamalScheme(TextEncoder textEncoder, BigInteger seed) {
         if (textEncoder == null) {
@@ -32,17 +35,28 @@ public class ElGamalScheme {
         verifier = new ElGamalVerifier(generator.getPublicKey());
     }
 
-    public ElGamalSignature sign(String hash) {
+    @Override
+    public ElGamalSignature getSignature() {
+        return signature;
+    }
+
+    public void setSignature(ElGamalSignature signature) {
+        this.signature = signature;
+    }
+
+    @Override
+    public void sign(String hash) {
         if (hash == null) {
             throw new IllegalArgumentException("Hash cannot be null");
         }
 
         BigInteger encodedHash = textEncoder.encode(hash);
         signer.generateSignature(encodedHash);
-        return signer.getSignature();
+        signature = signer.getSignature();
     }
 
-    public boolean verify(ElGamalSignature signature, String hash) {
+    @Override
+    public boolean verify(String hash) {
         if (signature == null) {
             throw new IllegalArgumentException("Signature cannot be null");
         }

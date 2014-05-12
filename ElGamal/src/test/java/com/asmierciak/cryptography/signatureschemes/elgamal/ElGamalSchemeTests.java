@@ -26,7 +26,8 @@ public class ElGamalSchemeTests {
         this.message = message;
 
         elGamal = new ElGamalScheme(textEncoder, seed);
-        signature = elGamal.sign(message);
+        elGamal.sign(message);
+        signature = elGamal.getSignature();
     }
 
     @Parameterized.Parameters
@@ -74,6 +75,7 @@ public class ElGamalSchemeTests {
 
     @Test
     public void testSignatureIsValid() {
-        assertThat(elGamal.verify(signature, message), is(true));
+        elGamal.setSignature(signature);
+        assertThat(elGamal.verify(message), is(true));
     }
 }

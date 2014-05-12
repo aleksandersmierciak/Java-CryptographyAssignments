@@ -68,16 +68,19 @@ public class ElGamalVerifierTests {
 
     @Test (expected = IllegalArgumentException.class)
     public void testThrowsIfSignatureIsNull() {
-        verifier.verify(null, input);
+        verifier.setSignature(null);
+        verifier.verify(input);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testThrowsIfInputIsNull() {
-        verifier.verify(new ElGamalSignature(BigInteger.ONE, BigInteger.ONE), null);
+        verifier.setSignature(new ElGamalSignature(BigInteger.ONE, BigInteger.ONE));
+        verifier.verify(null);
     }
 
     @Test
     public void testInputMessageIsVerified() {
-        assertThat(verifier.verify(signature, input), is(true));
+        verifier.setSignature(signature);
+        assertThat(verifier.verify(input), is(true));
     }
 }

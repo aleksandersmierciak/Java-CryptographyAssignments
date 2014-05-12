@@ -1,8 +1,10 @@
 package com.asmierciak.cryptography.signatureschemes.elgamal.signing;
 
+import com.asmierciak.cryptography.signatureschemes.signing.Signature;
+
 import java.math.BigInteger;
 
-public class ElGamalSignature {
+public class ElGamalSignature implements Signature {
     private final BigInteger r;
 
     private final BigInteger s;

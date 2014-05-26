@@ -39,7 +39,7 @@ public class ElGamalVerifier implements SignatureVerifier {
     private boolean checkPreconditions(BigInteger r, BigInteger s) {
         BigInteger p = publicKey.getP();
         return (r.compareTo(BigInteger.ZERO) > 0 && r.compareTo(p) < 0 &&
-                s.compareTo(BigInteger.ZERO) > 0 && r.compareTo(p.subtract(BigInteger.ONE)) < 0);
+                s.compareTo(BigInteger.ZERO) > 0 && s.compareTo(p.subtract(BigInteger.ONE)) < 0);
     }
 
     private boolean validateSignature(ElGamalSignature signature, BigInteger m) {
@@ -50,7 +50,7 @@ public class ElGamalVerifier implements SignatureVerifier {
         BigInteger s = signature.getS();
 
         BigInteger leftSide = g.modPow(m, p);
-        BigInteger rightSide = (y.modPow(r, p)).multiply(r.modPow(s, p));
+        BigInteger rightSide = (y.modPow(r, p)).multiply(r.modPow(s, p)).mod(p);
 
         return leftSide.compareTo(rightSide) == 0;
     }

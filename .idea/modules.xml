@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/OpenSsl/OpenSsl.iml" filepath="$PROJECT_DIR$/OpenSsl/OpenSsl.iml" />
       <module fileurl="file://$PROJECT_DIR$/Rsa/Rsa.iml" filepath="$PROJECT_DIR$/Rsa/Rsa.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sha1/Sha1.iml" filepath="$PROJECT_DIR$/Sha1/Sha1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sha2/Sha2.iml" filepath="$PROJECT_DIR$/Sha2/Sha2.iml" />
     </modules>
   </component>
 </project>

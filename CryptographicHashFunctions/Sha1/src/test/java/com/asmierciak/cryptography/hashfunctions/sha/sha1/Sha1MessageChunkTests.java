@@ -1,6 +1,5 @@
 package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
-import com.asmierciak.cryptography.hashfunctions.sha.sha1.Sha1MessageChunk;
 import com.asmierciak.util.bytes.ArrayConversions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +24,7 @@ public class Sha1MessageChunkTests {
         this.expectedHash = expectedHash;
 
         chunk = new Sha1MessageChunk(inputData);
-        chunk.calculateHash(new int[]{0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0});
+        chunk.calculateHash(Arrays.copyOf(Sha1MessageChunk.INITIAL_HASH, Sha1MessageChunk.INITIAL_HASH.length));
     }
 
     @Parameterized.Parameters

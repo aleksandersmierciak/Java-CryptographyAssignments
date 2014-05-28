@@ -67,14 +67,7 @@ public class Sha1Message implements ShaMessage {
     }
 
     private void initializeHash() {
-        // Values according to SHA-1 paper
-        hash = new int[5];
-        // Java integer is signed, so we have to emulate unsignedness
-        hash[0] = (int)0x67452301L;
-        hash[1] = (int)0xEFCDAB89L;
-        hash[2] = (int)0x98BADCFEL;
-        hash[3] = (int)0x10325476L;
-        hash[4] = (int)0xC3D2E1F0L;
+        hash = Arrays.copyOf(Sha1MessageChunk.INITIAL_HASH, Sha1MessageChunk.INITIAL_HASH.length);
     }
 
     private void addHashFromChunk(ShaMessageChunk chunk) {

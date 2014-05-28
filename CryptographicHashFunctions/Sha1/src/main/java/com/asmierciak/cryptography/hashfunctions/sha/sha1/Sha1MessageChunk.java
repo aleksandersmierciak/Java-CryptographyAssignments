@@ -5,6 +5,9 @@ import com.asmierciak.cryptography.hashfunctions.sha.ShaMessageChunk;
 import java.util.Arrays;
 
 public class Sha1MessageChunk implements ShaMessageChunk {
+    // Values according to SHA-1 paper
+    public final static int[] INITIAL_HASH = new int[]{0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0};
+
     public final static int CHUNK_VALID_SIZE_IN_BYTES = 64;
 
     private final static int WORD_SIZE_IN_BYTES = 4;

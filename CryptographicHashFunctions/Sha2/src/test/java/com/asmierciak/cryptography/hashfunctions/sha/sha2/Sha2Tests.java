@@ -31,15 +31,15 @@ public class Sha2Tests {
                 {
                         {
                                 "Ala ma kota",
-                                "43fd70009a97a7d311c5644047ccc700f8d08a9d"
+                                "124bfb6284d82f3b1105f88e3e7a0ee02d0e525193413c05b75041917022cd6e"
                         },
                         {
                                 "The quick brown fox jumps over the lazy dog",
-                                "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12"
+                                "d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592"
                         },
                         {
                                 "Zażółć gęślą jaźń",
-                                "839b3ecd39c5ac4118a24e3ebee3401b0f62d1fc"
+                                "bc5348fd7c2dd8bbf411f0b9268265f7c2e0d31ebf314695882b8170c7e1e9d7"
                         }
                 };
         return Arrays.asList(data);

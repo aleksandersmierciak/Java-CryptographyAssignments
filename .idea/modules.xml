@@ -3,12 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Common/Common.iml" filepath="$PROJECT_DIR$/Common/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CryptographicHashFunctions/CryptographicHashFunctions.iml" filepath="$PROJECT_DIR$/CryptographicHashFunctions/CryptographicHashFunctions.iml" />
       <module fileurl="file://$PROJECT_DIR$/ElGamal/ElGamal.iml" filepath="$PROJECT_DIR$/ElGamal/ElGamal.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java-CryptographyAssignments.iml" filepath="$PROJECT_DIR$/Java-CryptographyAssignments.iml" />
       <module fileurl="file://$PROJECT_DIR$/OpenSsl/OpenSsl.iml" filepath="$PROJECT_DIR$/OpenSsl/OpenSsl.iml" />
       <module fileurl="file://$PROJECT_DIR$/Rsa/Rsa.iml" filepath="$PROJECT_DIR$/Rsa/Rsa.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Sha1/Sha1.iml" filepath="$PROJECT_DIR$/Sha1/Sha1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Sha2/Sha2.iml" filepath="$PROJECT_DIR$/Sha2/Sha2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CryptographicHashFunctions/Sha1/Sha1.iml" filepath="$PROJECT_DIR$/CryptographicHashFunctions/Sha1/Sha1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CryptographicHashFunctions/Sha2/Sha2.iml" filepath="$PROJECT_DIR$/CryptographicHashFunctions/Sha2/Sha2.iml" />
     </modules>
   </component>
 </project>

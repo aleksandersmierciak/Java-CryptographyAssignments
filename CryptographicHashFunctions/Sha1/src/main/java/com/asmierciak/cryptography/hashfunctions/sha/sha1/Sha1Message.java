@@ -1,5 +1,7 @@
-package com.asmierciak.cryptography.hashfunctions.sha;
+package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
+import com.asmierciak.cryptography.hashfunctions.sha.MessageFiller;
+import com.asmierciak.cryptography.hashfunctions.sha.ShaMessage;
 import com.asmierciak.util.bytes.MessageSplitter;
 
 import java.nio.ByteBuffer;
@@ -7,14 +9,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Message {
+public class Sha1Message implements ShaMessage {
     private final byte[] data;
 
-    private final List<MessageChunk> chunks = new ArrayList<>();
+    private final List<Sha1MessageChunk> chunks = new ArrayList<>();
 
     private int[] hash;
 
-    public Message(byte[] data) {
+    public Sha1Message(byte[] data) {
         if (data.length == 0)
         {
             throw new IllegalArgumentException("Input cannot be an empty array");
@@ -26,9 +28,9 @@ public class Message {
 
     private void splitDataIntoChunks() {
         MessageSplitter splitter = new MessageSplitter();
-        byte[][] chunkData = MessageSplitter.split(data, MessageChunk.CHUNK_VALID_SIZE_IN_BYTES);
+        byte[][] chunkData = MessageSplitter.split(data, Sha1MessageChunk.CHUNK_VALID_SIZE_IN_BYTES);
         for (byte[] aChunkData : chunkData) {
-            chunks.add(new MessageChunk(aChunkData));
+            chunks.add(new Sha1MessageChunk(aChunkData));
         }
     }
 
@@ -36,7 +38,7 @@ public class Message {
         return data.length;
     }
 
-    public List<MessageChunk> getChunks() {
+    public List<Sha1MessageChunk> getChunks() {
         return chunks;
     }
 
@@ -44,6 +46,7 @@ public class Message {
         return hash;
     }
 
+    @Override
     public byte[] getHashBytes()
     {
         byte[] hashBytes = new byte[hash.length * 4];
@@ -54,9 +57,10 @@ public class Message {
         return hashBytes;
     }
 
+    @Override
     public void calculateHash() {
         initializeHash();
-        for (MessageChunk chunk : chunks) {
+        for (Sha1MessageChunk chunk : chunks) {
             chunk.calculateHash(Arrays.copyOf(hash, hash.length));
             addHashFromChunk(chunk);
         }
@@ -73,7 +77,7 @@ public class Message {
         hash[4] = (int)0xC3D2E1F0L;
     }
 
-    private void addHashFromChunk(MessageChunk chunk) {
+    private void addHashFromChunk(Sha1MessageChunk chunk) {
         int[] chunkHash = chunk.getHash();
         for (int i = 0; i < hash.length; ++i) {
             hash[i] += chunkHash[i];

@@ -1,4 +1,4 @@
-package com.asmierciak.cryptography.hashfunctions.sha;
+package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
 import com.asmierciak.cryptography.hashfunctions.HashFunction;
 
@@ -17,7 +17,7 @@ public class Sha1 implements HashFunction {
         }
 
         byte[] inputBytes = input.getBytes(utf8);
-        Message message = new Message(inputBytes);
+        Sha1Message message = new Sha1Message(inputBytes);
         message.calculateHash();
         byte[] outputBytes = message.getHashBytes();
         return bytesToHex(outputBytes);

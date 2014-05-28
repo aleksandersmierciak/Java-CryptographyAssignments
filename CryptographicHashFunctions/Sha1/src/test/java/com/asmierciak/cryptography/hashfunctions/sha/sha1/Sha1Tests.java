@@ -1,6 +1,7 @@
-package com.asmierciak.cryptography.hashfunctions.sha;
+package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
 import com.asmierciak.cryptography.hashfunctions.HashFunction;
+import com.asmierciak.cryptography.hashfunctions.sha.sha1.Sha1;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

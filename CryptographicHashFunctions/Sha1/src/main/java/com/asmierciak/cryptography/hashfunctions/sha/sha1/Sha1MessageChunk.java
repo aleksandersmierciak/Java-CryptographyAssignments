@@ -1,8 +1,10 @@
-package com.asmierciak.cryptography.hashfunctions.sha;
+package com.asmierciak.cryptography.hashfunctions.sha.sha1;
+
+import com.asmierciak.cryptography.hashfunctions.sha.ShaMessageChunk;
 
 import java.util.Arrays;
 
-public class MessageChunk {
+public class Sha1MessageChunk implements ShaMessageChunk {
     public final static int CHUNK_VALID_SIZE_IN_BYTES = 64;
 
     private final static int WORD_SIZE_IN_BYTES = 4;
@@ -16,7 +18,7 @@ public class MessageChunk {
 
     private int[] hash;
 
-    public MessageChunk(byte[] data) {
+    public Sha1MessageChunk(byte[] data) {
         if (data.length != CHUNK_VALID_SIZE_IN_BYTES) {
             throw new IllegalArgumentException(
                     "Input data size is " + data.length + ", different than " + CHUNK_VALID_SIZE_IN_BYTES);
@@ -30,6 +32,7 @@ public class MessageChunk {
         return words;
     }
 
+    @Override
     public int[] getHash()
     {
         return hash;
@@ -55,6 +58,7 @@ public class MessageChunk {
         }
     }
 
+    @Override
     public void calculateHash(int[] previousChunkHash) {
         if (previousChunkHash.length != 5) {
             throw new IllegalArgumentException(

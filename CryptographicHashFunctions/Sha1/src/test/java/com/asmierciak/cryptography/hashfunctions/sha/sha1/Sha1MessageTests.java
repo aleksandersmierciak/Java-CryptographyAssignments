@@ -1,5 +1,6 @@
-package com.asmierciak.cryptography.hashfunctions.sha;
+package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
+import com.asmierciak.cryptography.hashfunctions.sha.sha1.Sha1Message;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -12,8 +13,8 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
-public class MessageTests {
-    private final Message message;
+public class Sha1MessageTests {
+    private final Sha1Message message;
 
     private final int expectedLength;
 
@@ -21,12 +22,12 @@ public class MessageTests {
 
     private final byte[] expectedOutput;
 
-    public MessageTests(byte[] input, byte[] expectedOutput, int expectedLength, int expectedChunkCount) {
+    public Sha1MessageTests(byte[] input, byte[] expectedOutput, int expectedLength, int expectedChunkCount) {
         this.expectedLength = expectedLength;
         this.expectedChunkCount = expectedChunkCount;
         this.expectedOutput = expectedOutput;
 
-        message = new Message(input);
+        message = new Sha1Message(input);
         message.calculateHash();
     }
 
@@ -92,6 +93,6 @@ public class MessageTests {
 
     @Test (expected = IllegalArgumentException.class)
     public void testThrowsIfInputIsEmptyArray() {
-        new Message(new byte[0]);
+        new Sha1Message(new byte[0]);
     }
 }

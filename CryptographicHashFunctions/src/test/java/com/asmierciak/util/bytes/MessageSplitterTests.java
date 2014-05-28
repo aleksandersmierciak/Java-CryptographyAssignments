@@ -1,5 +1,6 @@
 package com.asmierciak.util.bytes;
 
+import com.asmierciak.util.bytes.MessageSplitter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

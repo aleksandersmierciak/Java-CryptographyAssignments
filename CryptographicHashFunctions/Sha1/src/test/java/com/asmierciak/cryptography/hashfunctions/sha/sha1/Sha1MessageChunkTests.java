@@ -1,5 +1,6 @@
-package com.asmierciak.cryptography.hashfunctions.sha;
+package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
+import com.asmierciak.cryptography.hashfunctions.sha.sha1.Sha1MessageChunk;
 import com.asmierciak.util.bytes.ArrayConversions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,18 +13,18 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
-public class MessageChunkTests {
+public class Sha1MessageChunkTests {
     private final int[] expectedWords;
 
     private final int[] expectedHash;
 
-    private final MessageChunk chunk;
+    private final Sha1MessageChunk chunk;
 
-    public MessageChunkTests(byte[] inputData, int[] expectedWords, int[] expectedHash) {
+    public Sha1MessageChunkTests(byte[] inputData, int[] expectedWords, int[] expectedHash) {
         this.expectedWords = expectedWords;
         this.expectedHash = expectedHash;
 
-        chunk = new MessageChunk(inputData);
+        chunk = new Sha1MessageChunk(inputData);
         chunk.calculateHash(new int[]{0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0});
     }
 
@@ -72,7 +73,7 @@ public class MessageChunkTests {
 
     @Test(expected = IllegalArgumentException.class)
     public void testThrowsIfChunkSizeInvalid() {
-        new MessageChunk(new byte[1]);
+        new Sha1MessageChunk(new byte[1]);
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
 import com.asmierciak.cryptography.hashfunctions.sha.MessageFiller;
 import com.asmierciak.cryptography.hashfunctions.sha.ShaMessage;
+import com.asmierciak.cryptography.hashfunctions.sha.ShaMessageChunk;
 import com.asmierciak.util.bytes.ArraySplitter;
 
 import java.nio.ByteBuffer;
@@ -12,7 +13,7 @@ import java.util.List;
 public class Sha1Message implements ShaMessage {
     private final byte[] data;
 
-    private final List<Sha1MessageChunk> chunks = new ArrayList<>();
+    private final List<ShaMessageChunk> chunks = new ArrayList<>();
 
     private int[] hash;
 
@@ -37,7 +38,7 @@ public class Sha1Message implements ShaMessage {
         return data.length;
     }
 
-    public List<Sha1MessageChunk> getChunks() {
+    public List<ShaMessageChunk> getChunks() {
         return chunks;
     }
 
@@ -59,7 +60,7 @@ public class Sha1Message implements ShaMessage {
     @Override
     public void calculateHash() {
         initializeHash();
-        for (Sha1MessageChunk chunk : chunks) {
+        for (ShaMessageChunk chunk : chunks) {
             chunk.calculateHash(Arrays.copyOf(hash, hash.length));
             addHashFromChunk(chunk);
         }
@@ -76,7 +77,7 @@ public class Sha1Message implements ShaMessage {
         hash[4] = (int)0xC3D2E1F0L;
     }
 
-    private void addHashFromChunk(Sha1MessageChunk chunk) {
+    private void addHashFromChunk(ShaMessageChunk chunk) {
         int[] chunkHash = chunk.getHash();
         for (int i = 0; i < hash.length; ++i) {
             hash[i] += chunkHash[i];

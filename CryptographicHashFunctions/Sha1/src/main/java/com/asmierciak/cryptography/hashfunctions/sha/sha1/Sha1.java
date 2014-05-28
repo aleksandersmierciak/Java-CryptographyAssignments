@@ -1,15 +1,11 @@
 package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
 import com.asmierciak.cryptography.hashfunctions.HashFunction;
-
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
+import com.asmierciak.cryptography.hashfunctions.sha.ShaMessage;
 
 import static com.asmierciak.util.numbers.HexConversions.bytesToHex;
 
 public class Sha1 implements HashFunction {
-    private static final Charset utf8 = StandardCharsets.UTF_8;
-
     @Override
     public String hash(String input) {
         if (input == null || input.isEmpty()) {
@@ -17,7 +13,7 @@ public class Sha1 implements HashFunction {
         }
 
         byte[] inputBytes = input.getBytes(utf8);
-        Sha1Message message = new Sha1Message(inputBytes);
+        ShaMessage message = new Sha1Message(inputBytes);
         message.calculateHash();
         byte[] outputBytes = message.getHashBytes();
         return bytesToHex(outputBytes);

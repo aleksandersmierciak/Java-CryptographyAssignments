@@ -2,7 +2,7 @@ package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
 import com.asmierciak.cryptography.hashfunctions.sha.MessageFiller;
 import com.asmierciak.cryptography.hashfunctions.sha.ShaMessage;
-import com.asmierciak.util.bytes.MessageSplitter;
+import com.asmierciak.util.bytes.ArraySplitter;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -27,8 +27,7 @@ public class Sha1Message implements ShaMessage {
     }
 
     private void splitDataIntoChunks() {
-        MessageSplitter splitter = new MessageSplitter();
-        byte[][] chunkData = MessageSplitter.split(data, Sha1MessageChunk.CHUNK_VALID_SIZE_IN_BYTES);
+        byte[][] chunkData = ArraySplitter.split(data, Sha1MessageChunk.CHUNK_VALID_SIZE_IN_BYTES);
         for (byte[] aChunkData : chunkData) {
             chunks.add(new Sha1MessageChunk(aChunkData));
         }

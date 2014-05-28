@@ -1,6 +1,5 @@
 package com.asmierciak.util.bytes;
 
-import com.asmierciak.util.bytes.MessageSplitter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -13,15 +12,15 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
-public class MessageSplitterTests {
+public class ArraySplitterTests {
     private final byte[][] expectedOutput;
 
     private final byte[][] actualOutput;
 
-    public MessageSplitterTests(byte[] message, int splitCount, byte[][] expectedOutput) {
+    public ArraySplitterTests(byte[] message, int splitCount, byte[][] expectedOutput) {
         this.expectedOutput = expectedOutput;
 
-        actualOutput = MessageSplitter.split(message, splitCount);
+        actualOutput = ArraySplitter.split(message, splitCount);
     }
 
     @Parameterized.Parameters

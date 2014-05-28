@@ -1,7 +1,6 @@
 package com.asmierciak.cryptography.hashfunctions.sha.sha1;
 
 import com.asmierciak.cryptography.hashfunctions.HashFunction;
-import com.asmierciak.cryptography.hashfunctions.sha.sha1.Sha1;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -10,7 +9,9 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 @RunWith(Parameterized.class)
 public class Sha1Tests {

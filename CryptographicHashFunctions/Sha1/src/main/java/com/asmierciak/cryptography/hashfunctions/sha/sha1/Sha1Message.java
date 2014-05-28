@@ -47,8 +47,7 @@ public class Sha1Message implements ShaMessage {
     }
 
     @Override
-    public byte[] getHashBytes()
-    {
+    public byte[] getHashBytes() {
         byte[] hashBytes = new byte[hash.length * 4];
         for (int i = 0; i < hash.length; ++i) {
             byte[] singleInteger = ByteBuffer.allocate(4).putInt(hash[i]).array();

@@ -5,6 +5,7 @@ import com.asmierciak.cryptography.hashfunctions.sha.ShaMessage;
 import com.asmierciak.cryptography.hashfunctions.sha.ShaMessageChunk;
 import com.asmierciak.util.bytes.ArraySplitter;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +48,12 @@ public class Sha2Message implements ShaMessage {
 
     @Override
     public byte[] getHashBytes() {
-        return new byte[0];
+        byte[] hashBytes = new byte[hash.length * 4];
+        for (int i = 0; i < hash.length; ++i) {
+            byte[] singleInteger = ByteBuffer.allocate(4).putInt(hash[i]).array();
+            System.arraycopy(singleInteger, 0, hashBytes, i * 4, 4);
+        }
+        return hashBytes;
     }
 
     @Override

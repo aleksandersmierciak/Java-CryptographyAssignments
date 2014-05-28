@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -40,22 +39,22 @@ public class Sha2MessageTests {
         Object[][] data = new Object[][]
                 {
                         {
-                                "Ala ma kota".getBytes(StandardCharsets.UTF_8),
-                                "124bfb6284d82f3b1105f88e3e7a0ee02d0e525193413c05b75041917022cd6e".getBytes(StandardCharsets.UTF_8),
-                                0,
-                                0
+                                new byte[]{65,108,97,32,109,97,32,107,111,116,97},
+                                new byte[]{49,50,52,98,102,98,54,50,56,52,100,56,50,102,51,98,49,49,48,53,102,56,56,101,51,101,55,97,48,101,101,48,50,100,48,101,53,50,53,49,57,51,52,49,51,99,48,53,98,55,53,48,52,49,57,49,55,48,50,50,99,100,54,101},
+                                64,
+                                1
                         },
                         {
-                                "The quick brown fox jumps over the lazy dog".getBytes(StandardCharsets.UTF_8),
-                                "d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592".getBytes(StandardCharsets.UTF_8),
-                                0,
-                                0
+                                new byte[]{84,104,101,32,113,117,105,99,107,32,98,114,111,119,110,32,102,111,120,32,106,117,109,112,115,32,111,118,101,114,32,116,104,101,32,108,97,122,121,32,100,111,103},
+                                new byte[]{100,55,97,56,102,98,98,51,48,55,100,55,56,48,57,52,54,57,99,97,57,97,98,99,98,48,48,56,50,101,52,102,56,100,53,54,53,49,101,52,54,100,51,99,100,98,55,54,50,100,48,50,100,48,98,102,51,55,99,57,101,53,57,50},
+                                64,
+                                1
                         },
                         {
-                                "Zażółć gęślą jaźń".getBytes(StandardCharsets.UTF_8),
-                                "bc5348fd7c2dd8bbf411f0b9268265f7c2e0d31ebf314695882b8170c7e1e9d7".getBytes(StandardCharsets.UTF_8),
-                                0,
-                                0
+                                new byte[]{90,97,-59,-68,-61,-77,-59,-126,-60,-121,32,103,-60,-103,-59,-101,108,-60,-123,32,106,97,-59,-70,-59,-124},
+                                new byte[]{98,99,53,51,52,56,102,100,55,99,50,100,100,56,98,98,102,52,49,49,102,48,98,57,50,54,56,50,54,53,102,55,99,50,101,48,100,51,49,101,98,102,51,49,52,54,57,53,56,56,50,98,56,49,55,48,99,55,101,49,101,57,100,55},
+                                64,
+                                1
                         }
                 };
         return Arrays.asList(data);

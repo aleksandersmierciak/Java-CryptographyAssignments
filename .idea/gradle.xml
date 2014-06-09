@@ -7,7 +7,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="D:\Projects\Java-CryptographyAssignments" />
+            <option value="$PROJECT_DIR$" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -17,7 +17,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/ElGamal" />
         <option name="modules">
           <set>
-            <option value="D:\Projects\Java-CryptographyAssignments\ElGamal" />
+            <option value="$PROJECT_DIR$/ElGamal" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -27,7 +27,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/OpenSsl" />
         <option name="modules">
           <set>
-            <option value="D:\Projects\Java-CryptographyAssignments\OpenSsl" />
+            <option value="$PROJECT_DIR$/OpenSsl" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -37,7 +37,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/Rsa" />
         <option name="modules">
           <set>
-            <option value="D:\Projects\Java-CryptographyAssignments\Rsa" />
+            <option value="$PROJECT_DIR$/Rsa" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -47,7 +47,17 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/Sha1" />
         <option name="modules">
           <set>
-            <option value="D:\Projects\Java-CryptographyAssignments\Sha1" />
+            <option value="$PROJECT_DIR$/Sha1" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="createEmptyContentRootDirectories" value="true" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Sha2" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Sha2" />
           </set>
         </option>
       </GradleProjectSettings>
